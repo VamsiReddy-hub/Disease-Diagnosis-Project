@@ -11,7 +11,6 @@ nltk.download('omw-1.4')
 # Set page config
 st.set_page_config(page_title="Disease Diagnosis", page_icon=":hospital:", layout="wide")
 
-
 # Configure Gemini API using environment variable
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 
@@ -19,7 +18,7 @@ genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 try:
     model = genai.GenerativeModel('gemini-1.5-flash')
 except Exception as e:
-    st.error(f"\u274c Error initializing Gemini model: {e}")
+    st.error(f"❌ Error initializing Gemini model: {e}")
     model = None
 
 def get_cure_and_prevention(disease):
@@ -71,26 +70,25 @@ st.markdown(
 )
 
 def main():
-   st.title(":hospital: Disease Diagnosis Based on Symptoms")
-
+    st.title(":hospital: Disease Diagnosis Based on Symptoms")
     st.write("Enter your symptoms (comma-separated) to get a diagnosis.")
 
     symptoms = st.text_input("Enter Symptoms (e.g., fever, headache, cough):")
 
-    if st.button("\ud83d\udd0d Predict Disease"):
+    if st.button("🔍 Predict Disease"):
         if not symptoms:
-            st.error("\ud83d\udea8 Please enter at least one symptom.")
+            st.error("🚨 Please enter at least one symptom.")
         else:
-            with st.spinner("\ud83d\udd2c Predicting..."):
+            with st.spinner("🔬 Predicting..."):
                 result = predict_disease(symptoms)
                 if "error" in result[0]:
-                    st.error(f"\u274c Error: {result[0]['error']}")
+                    st.error(f"❌ Error: {result[0]['error']}")
                 else:
-                    st.success("\u2705 Predicted Diseases:")
+                    st.success("✅ Predicted Diseases:")
                     for disease in result:
                         st.write(f"### {disease['disease']} (Confidence: {disease['confidence']}%)")
                         details = get_cure_and_prevention(disease['disease'])
-                        st.write(f"#### Cure and Prevention Methods:")
+                        st.write("#### Cure and Prevention Methods:")
                         st.write(details)
                         st.write("---")
 
