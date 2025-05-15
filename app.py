@@ -9,7 +9,8 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 # Set page config
-st.set_page_config(page_title="Disease Diagnosis", page_icon="\ud83c\udfe5", layout="wide")
+st.set_page_config(page_title="Disease Diagnosis", page_icon=":hospital:", layout="wide")
+
 
 # Configure Gemini API using environment variable
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
