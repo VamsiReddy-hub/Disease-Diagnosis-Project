@@ -71,7 +71,8 @@ st.markdown(
 )
 
 def main():
-    st.title("\ud83c\udfe5 Disease Diagnosis Based on Symptoms")
+   st.title(":hospital: Disease Diagnosis Based on Symptoms")
+
     st.write("Enter your symptoms (comma-separated) to get a diagnosis.")
 
     symptoms = st.text_input("Enter Symptoms (e.g., fever, headache, cough):")
